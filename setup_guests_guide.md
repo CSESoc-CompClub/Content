@@ -1,9 +1,7 @@
 ## Usage
 
-<aside>
-💢 **MAKE SURE TO `chmod -R 755` EVERYTHING IN PUBLIC HTML!!!!**
-
-</aside>
+> [!WARNING]
+> **MAKE SURE TO `chmod -R 755` EVERYTHING IN PUBLIC HTML!!!!**
 
 1. Put it in `public_html` on your uni account
 2. make a folder for your wo  rkshop (e.g. intro)
