@@ -13,6 +13,7 @@ Run `scp driver.py driven.py setup.py password z5482795@cse.unsw.edu.au:/import/
 You should then run
 
 - `chmod 700 driver.py` (we do not want students running the code in this file)
+- `chmod 700 password` (we don't want to expose the password for all to see)
 - `chmod 755 driven.py` (needs to be readable + executable by other users)
 - `chmod 755 setup.py` (needs to be readable + executable by other users)
 
