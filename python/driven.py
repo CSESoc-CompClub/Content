@@ -7,9 +7,21 @@
 
 import textwrap
 import os
+import shutil
+import stat
 
 
 def main():
+    try:
+        os.remove("compclub-intro")
+    except:
+        pass
+
+    try:
+        os.remove("cc-setup")
+    except:
+        pass
+
     with open(".config/autostart/terminal.desktop", "w") as f:
         f.write(
             textwrap.dedent(
@@ -23,8 +35,17 @@ def main():
             )
         )
 
-    link_name = "cc-setup"
-    real_name = "/import/kamen/6/z5482795/public_html/compclub/setup.py"
+    arduino_ide_appimage = "arduino-ide_2.3.2_Linux_64bit.AppImage"
+    arduino_ide_appimage_path = (
+        f"/import/kamen/6/z5482795/public_html/compclub/{arduino_ide_appimage}"
+    )
+    shutil.copyfile(arduino_ide_appimage_path, arduino_ide_appimage)
+    # We don't need to touch permissions at all
+
+    link_name = "day3"
+    real_name = (
+        "/import/kamen/6/z5482795/public_html/compclub/2024/winter/day3-arduino.py"
+    )
     try:
         os.symlink(real_name, link_name)
     except:

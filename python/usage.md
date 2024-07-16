@@ -1,6 +1,6 @@
 # Overview
 
-The `driver.py` script creates a threadpool with a customisable number of threads and spawns a new shell for each (guest) account and runs `driven.py` from that guest account. At the moment, `driven.py` will create an autostart file (see [here](https://wiki.archlinux.org/title/Desktop_entries) for more details) for the terminal and also create a symlink in the (guest) user's home directory. The symlink points to the `setup.py` file and has the `cc-setup` name. It's possible to set up multiple setup files; just make sure the appropriate permissions (read + execute) are set.
+The `driver.py` script creates a threadpool with a customisable number of threads and spawns a new shell for each (guest) account and runs `driven.py` from that guest account. At the moment, `driven.py` will create an autostart file (see [here](https://wiki.archlinux.org/title/Desktop_entries) for more details) for the terminal and also create a symlink in the (guest) user's home directory. The symlink points to the `2024/winter/day3-arduino.py` file and has the `day3` name. It's possible to set up multiple setup files; just make sure the appropriate permissions (read + execute) are set. Also make sure to place your setup files in the right year/season folder and name them appropriately as well.
 
 When making modifications, you should always test the changes on an account like `cseguest00` first before deploying it to ALL (guest) users.
 
@@ -8,14 +8,17 @@ When making modifications, you should always test the changes on an account like
 
 Put the correct password into the password file. Make sure there is a trailing newline. We put the password into a file to prevent leaking it through the process list as everyone can see invocation details.
 
-Run `scp driver.py driven.py setup.py password z5482795@cse.unsw.edu.au:/import/kamen/6/z5482795/public_html/compclub` with your own zID to copy the files locally to the server using SSH.
+Run `scp -r 2024/ driver.py driven.py password z5482795@cse.unsw.edu.au:/import/kamen/6/z5482795/public_html/compclub` with your own zID to copy the files locally to the server using SSH.
 
 You should then run
 
 - `chmod 700 driver.py` (we do not want students running the code in this file)
 - `chmod 700 password` (we don't want to expose the password for all to see)
 - `chmod 755 driven.py` (needs to be readable + executable by other users)
-- `chmod 755 setup.py` (needs to be readable + executable by other users)
+- `chmod 755 -R 2024` (needs to be readable + executable by other users)
+  - Do this for all the other years as well
+
+Make sure to set other files permissions as well to ensure copying across user directories works correctly.
 
 Then just run `./driver.py` from your account.
 

@@ -13,7 +13,7 @@ import os
 
 NUM_THREADS = 8
 USER_LOWER_INCLUSIVE = 0
-USER_UPPER_EXCLUSIVE = 120
+USER_UPPER_EXCLUSIVE = 1
 DRIVEN_PATH = "/import/kamen/6/z5482795/public_html/compclub/driven.py"
 
 devnull = open(os.devnull, "w")
