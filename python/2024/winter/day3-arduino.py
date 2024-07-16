@@ -11,13 +11,21 @@ import git
 
 
 def main():
+    # Fix "Firefox is already running but it is not responding. To open a new window, you must first close the existing firefox process or restart your system."
+    subprocess.run("pkill -U $USER -f firefox", shell=True)
+    subprocess.run("rm -rf .mozilla/firefox/*.default/.parentlock", shell=True)
+    subprocess.run(
+        'firefox "https://docs.google.com/presentation/d/1Yqk1hf7OoGZCTgLDs_NqrnPLsaZ_eI8eNcheF44jLns/edit" & disown',
+        shell=True,
+        executable="/bin/bash",  # we need to set to bash to make disown work
+    )
+
     repos = ["2024-Winter-Arduino-Day3"]
 
     for repo in repos:
-        dir_name = f"compclub-{repo}"
         try:
             git.Repo.clone_from(
-                f"https://github.com/CSESoc-CompClub/{repo}", dir_name, branch="deploy"
+                f"https://github.com/CSESoc-CompClub/{repo}", "Arduino", branch="deploy"
             )
         except:
             print(
@@ -29,13 +37,11 @@ def main():
                 )
             )
 
-        # This is broken for now
-        # subprocess.run(
-        #     f"./arduino-ide_2.3.2_Linux_64bit.AppImage --app-project-path {dir_name}",
-        #     shell=True,
-        #     capture_output=True,
-        #     text=True,
-        # )
+    subprocess.run(
+        "./arduino-ide_2.3.2_Linux_64bit.AppImage --app-project-path compclub-2024-Winter-Arduino-Day3/Blink & disown",
+        shell=True,
+        executable="/bin/bash",
+    )
 
 
 if __name__ == "__main__":

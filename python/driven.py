@@ -9,20 +9,16 @@ import textwrap
 import os
 import shutil
 import stat
+import subprocess
 
 
 def main():
-    try:
-        os.remove("compclub-intro")
-    except:
-        pass
+    # Only run this if we want to wipe a user folder because they have exceeded the quota
+    # subprocess.run("rm -rf * .*", shell=True)
 
-    try:
-        os.remove("cc-setup")
-    except:
-        pass
-
-    with open(".config/autostart/terminal.desktop", "w") as f:
+    autostart_path = ".config/autostart/terminal.desktop"
+    os.makedirs(os.path.dirname(autostart_path), exist_ok=True)
+    with open(autostart_path, "w+") as f:
         f.write(
             textwrap.dedent(
                 """\
@@ -40,7 +36,7 @@ def main():
         f"/import/kamen/6/z5482795/public_html/compclub/{arduino_ide_appimage}"
     )
     shutil.copyfile(arduino_ide_appimage_path, arduino_ide_appimage)
-    # We don't need to touch permissions at all
+    os.chmod(arduino_ide_appimage, 0o700)
 
     link_name = "day3"
     real_name = (

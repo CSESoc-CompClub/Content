@@ -11,9 +11,9 @@ from queue import Queue
 import os
 
 
-NUM_THREADS = 8
+NUM_THREADS = 16
 USER_LOWER_INCLUSIVE = 0
-USER_UPPER_EXCLUSIVE = 1
+USER_UPPER_EXCLUSIVE = 120
 DRIVEN_PATH = "/import/kamen/6/z5482795/public_html/compclub/driven.py"
 
 devnull = open(os.devnull, "w")
@@ -32,7 +32,7 @@ def execute_script(user):
     username = f"cseguest{str(user).zfill(2)}"
     command = f"cat password | su --login {username} -c {DRIVEN_PATH}"
     try:
-        result = subprocess.run(command, shell=True, stdout=devnull, stderr=devnull)
+        result = subprocess.run(command, shell=True)
         print(f"{username} returned {result.returncode}")
     except subprocess.CalledProcessError as e:
         print(f"Failed for {username}: {e.stderr}")
