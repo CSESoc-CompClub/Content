@@ -38,7 +38,7 @@ def main():
             )
 
     subprocess.run(
-        "./arduino-ide_2.3.2_Linux_64bit.AppImage --app-project-path compclub-2024-Winter-Arduino-Day3/Blink & disown",
+        "./arduino-ide_2.3.2_Linux_64bit.AppImage --app-project-path Arduino/Blink & disown",
         shell=True,
         executable="/bin/bash",
     )
