@@ -16,31 +16,36 @@ def main():
     # Only run this if we want to wipe a user folder because they have exceeded the quota
     # subprocess.run("rm -rf * .*", shell=True)
 
-    autostart_path = ".config/autostart/terminal.desktop"
-    os.makedirs(os.path.dirname(autostart_path), exist_ok=True)
-    with open(autostart_path, "w+") as f:
-        f.write(
-            textwrap.dedent(
-                """\
-                [Desktop Entry]
-                Type=Application
-                Name=automatically open a terminal
-                Hidden=false
-                Exec=x-terminal-emulator
-                """
-            )
-        )
+    # autostart_path = ".config/autostart/terminal.desktop"
+    # os.makedirs(os.path.dirname(autostart_path), exist_ok=True)
+    # with open(autostart_path, "w+") as f:
+    #     f.write(
+    #         textwrap.dedent(
+    #             """\
+    #             [Desktop Entry]
+    #             Type=Application
+    #             Name=automatically open a terminal
+    #             Hidden=false
+    #             Exec=x-terminal-emulator
+    #             """
+    #         )
+    #     )
 
-    arduino_ide_appimage = "arduino-ide_2.3.2_Linux_64bit.AppImage"
-    arduino_ide_appimage_path = (
-        f"/import/kamen/6/z5482795/public_html/compclub/{arduino_ide_appimage}"
-    )
-    shutil.copyfile(arduino_ide_appimage_path, arduino_ide_appimage)
-    os.chmod(arduino_ide_appimage, 0o700)
+    # arduino_ide_appimage = "arduino-ide_2.3.2_Linux_64bit.AppImage"
+    # arduino_ide_appimage_path = (
+    #     f"/import/kamen/6/z5482795/public_html/compclub/{arduino_ide_appimage}"
+    # )
+    # shutil.copyfile(arduino_ide_appimage_path, arduino_ide_appimage)
+    # os.chmod(arduino_ide_appimage, 0o700)
 
-    link_name = "day3"
+    try:
+        os.remove("day3")
+    except:
+        pass
+
+    link_name = "day4"
     real_name = (
-        "/import/kamen/6/z5482795/public_html/compclub/2024/winter/day3-arduino.py"
+        "/import/kamen/6/z5482795/public_html/compclub/2024/winter/day4-arduino.py"
     )
     try:
         os.symlink(real_name, link_name)
