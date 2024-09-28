@@ -38,14 +38,9 @@ def main():
     # shutil.copyfile(arduino_ide_appimage_path, arduino_ide_appimage)
     # os.chmod(arduino_ide_appimage, 0o700)
 
-    # try:
-    #     os.remove("day3")
-    # except:
-    #     pass
-
-    link_name = "day4"
+    link_name = "day2"
     real_name = (
-        "/import/kamen/6/z5482795/public_html/compclub/2024/winter/day4-arduino.py"
+        "/import/kamen/6/z5482795/public_html/compclub/2024/spring/day2-discord-bot.py"
     )
     try:
         os.symlink(real_name, link_name)
